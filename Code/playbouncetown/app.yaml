@@ -8,6 +8,7 @@ handlers:
 - url: /favicon\.ico
   static_files: favicon.ico
   upload: favicon\.ico
+  login: required
 
 # Serving static files (css, images, etc)
 - url: /static
