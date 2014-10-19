@@ -18,6 +18,7 @@ import os
 import jinja2
 import webapp2
 
+
 from handlers import friends_handler
 from handlers import main_handller
 from handlers import challenge_handler
@@ -33,5 +34,6 @@ jinja_env.filters["game_complete_boolean_format"] = game.game_complete_boolean_f
 app = webapp2.WSGIApplication([
                                ('/', main_handller.HomePage),
                                ('/friends', friends_handler.MainPage),
-                               ('/challenges', challenge_handler.MainPage)], debug=True)
+                               ('/challenges', challenge_handler.MainPage)
+                               ], debug=True)
                                
