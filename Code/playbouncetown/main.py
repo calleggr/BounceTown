@@ -22,8 +22,8 @@ import webapp2
 from handlers import friends_handler
 from handlers import main_handller
 from handlers import challenge_handler
-from utils import game
 
+from utils import game
 from utils import date_utils
 
 # Jinja environment instance necessary to use Jinja templates.
