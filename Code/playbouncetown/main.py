@@ -31,9 +31,25 @@ jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__
 jinja_env.filters["date_format"] = date_utils.date_format
 jinja_env.filters["game_complete_boolean_format"] = game.game_complete_boolean_format
 
+
+class MainHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template("templates/home.html")
+        self.response.out.write(template.render())
+        
+class FriendHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template("templates/friends.html")
+        self.response.out.write(template.render())
+        
+class ChallengeHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_env.get_template("templates/challenges.html")
+        self.response.out.write(template.render())
+
 app = webapp2.WSGIApplication([
-                               ('/', main_handller.HomePage),
-                               ('/friends', friends_handler.MainPage),
-                               ('/challenges', challenge_handler.MainPage)
+                               ('/', MainHandler),
+                               ('/friends', FriendHandler),
+                               ('/challenges', ChallengeHandler)
                                ], debug=True)
                                

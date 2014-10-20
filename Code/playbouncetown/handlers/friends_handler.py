@@ -1,4 +1,5 @@
+import webapp2
 
-class MainPage():
+class MainPage(webapp2.RequestHandler):
     def get_template(self):
         return "templates/friends.html"

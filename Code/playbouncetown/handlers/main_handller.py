@@ -1,8 +1,8 @@
-
+import webapp2
 
 ### Pages ###
 
-class HomePage():
+class HomePage(webapp2.RequestHandler):
   def get_template(self):
     return "templates/home.html"
 
