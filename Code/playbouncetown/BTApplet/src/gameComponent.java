@@ -11,13 +11,14 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
+import javax.swing.JApplet;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class gameComponent extends JPanel {
-	private int height;
-	private int width;
+public class gameComponent extends JApplet {
+	private int height = 500;
+	private int width = 500;
 	private MainC mainC;
 	public final long SLEEP_INTERVAL = 1; //milliseconds
 	public double enemyTimer = 0;
@@ -29,13 +30,11 @@ public class gameComponent extends JPanel {
 	public Point2D pointTwo;
 
 	
-	public gameComponent(int height) {
-		this.setFocusable(true);
-		this.requestFocusInWindow();
-		this.height = height;
-		this.width = height;
+	public void init() {
 		this.mainC = new MainC(height);
 		this.enemies = new ArrayList<Enemy>();
+		this.setSize(width,height);
+		//this.setBackground(Color.blue);
 		
 		// Make the time interval thread
 		class TimePassed implements Runnable {
@@ -146,7 +145,7 @@ public class gameComponent extends JPanel {
 	public void addNewEnemy(){
 		double xPoint = (Math.random()*700)+50;
 		double yPoint = (Math.random()*700)+50;
-		this.enemies.add(new Enemy(xPoint,yPoint));
+		this.enemies.add(new Enemy(xPoint,yPoint,this.height));
 	}
 	
 	public void UnitTimePassed() {
@@ -174,8 +173,8 @@ public class gameComponent extends JPanel {
 		}
 	}
 
-	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	public void paint(Graphics g) {
+		super.paint(g);
 		Graphics2D g2 = (Graphics2D) g;
 		//System.out.println("Painted");
 		// Paint the main character

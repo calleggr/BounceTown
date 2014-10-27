@@ -15,8 +15,10 @@ public class Enemy implements Character {
 	private boolean invincible;
 	private double diameter;
 	private int colorCounter = 0;
+	private int bounds;
 	
-	public Enemy(double x, double y){
+	public Enemy(double x, double y, int height){
+		this.bounds = height;
 		this.x = x;
 		this.y = y;
 		this.color = Color.RED;
@@ -53,10 +55,10 @@ public class Enemy implements Character {
 		// TODO Auto-generated method stub
 		this.x += this.dx;
 		this.y += this.dy;
-		if(this.x<0 || (this.x+(1.5*this.radius))>800){
+		if(this.x<0 || (this.x+(1.5*this.radius))>this.bounds){
 			this.dx*=-1;
 		}
-		if((this.y<0) || (this.y+(2*this.radius))>800){
+		if((this.y<0) || (this.y+(2*this.radius))>this.bounds){
 			this.dy*=-1;
 		}
 		this.shape = new Ellipse2D.Double(this.x,this.y,this.radius,this.radius);

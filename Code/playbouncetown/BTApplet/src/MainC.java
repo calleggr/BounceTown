@@ -14,6 +14,7 @@ public class MainC implements Character{
 	private Shape shape;
 	private boolean invincible;
 	private double diameter;
+	private int bounds;
 	
 	
 	public MainC(int height){
@@ -24,6 +25,7 @@ public class MainC implements Character{
 		this.diameter = 2*this.radius;
 		this.shape = new Ellipse2D.Double(this.x,this.y,this.diameter,this.diameter);
 		this.invincible = false;
+		this.bounds = height;
 	}
 	
 	public void changeInvincibilityStatus(){
@@ -52,10 +54,10 @@ public class MainC implements Character{
 		// TODO Auto-generated method stub
 		this.x += this.dx;
 		this.y += this.dy;
-		if(this.x<0 || (this.x+(1.5*this.radius))>800){
+		if(this.x<0 || (this.x+(1.5*this.radius))>this.bounds){
 			this.dx*=-1;
 		}
-		if((this.y<0) || (this.y+(2*this.radius))>800){
+		if((this.y<0) || (this.y+(2*this.radius))>this.bounds){
 			this.dy*=-1;
 		}
 		this.shape = new Ellipse2D.Double(this.x,this.y,this.radius,this.radius);
