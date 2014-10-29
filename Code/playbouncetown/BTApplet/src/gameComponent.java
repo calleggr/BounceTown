@@ -16,7 +16,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class gameComponent extends JApplet {
+public class gameComponent extends Applet {
 	private int height = 500;
 	private int width = 500;
 	private MainC mainC;
