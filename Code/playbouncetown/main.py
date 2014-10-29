@@ -18,38 +18,39 @@ import os
 import jinja2
 import webapp2
 
-
-from handlers import friends_handler
-from handlers import main_handller
-from handlers import challenge_handler
-
-from utils import game
+from handlers import game_handlers
+from handlers import main_handlers
 from utils import date_utils
+from utils import game_utils
 
 # Jinja environment instance necessary to use Jinja templates.
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)), autoescape=True)
 jinja_env.filters["date_format"] = date_utils.date_format
-jinja_env.filters["game_complete_boolean_format"] = game.game_complete_boolean_format
+jinja_env.filters["game_complete_boolean_format"] = game_utils.game_complete_boolean_format
 
 
-class MainHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_env.get_template("templates/home.html")
-        self.response.out.write(template.render())
-        
-class FriendHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_env.get_template("templates/friends.html")
-        self.response.out.write(template.render())
-        
-class ChallengeHandler(webapp2.RequestHandler):
-    def get(self):
-        template = jinja_env.get_template("templates/challenges.html")
-        self.response.out.write(template.render())
+# class MainHandler(webapp2.RequestHandler):
+#     def get(self):
+#         template = jinja_env.get_template("templates/home.html")
+#         self.response.out.write(template.render())
+#         
+# class FriendHandler(webapp2.RequestHandler):
+#     def get(self):
+#         template = jinja_env.get_template("templates/friends.html")
+#         self.response.out.write(template.render())
+#         
+# class ChallengeHandler(webapp2.RequestHandler):
+#     def get(self):
+#         template = jinja_env.get_template("templates/challenges.html")
+#         self.response.out.write(template.render())
 
 app = webapp2.WSGIApplication([
-                               ('/', MainHandler),
-                               ('/friends', FriendHandler),
-                               ('/challenges', ChallengeHandler)
-                               ], debug=True)
-                               
+    ('/', main_handlers.HomePage),
+    ('/play', game_handlers.PlayPage),
+    ('/gamesinprogress', game_handlers.GamesInProgressPage),
+    ('/completedgames', game_handlers.CompletedGamesWithFriendsPage),
+
+    ('/setdisplayname', main_handlers.SetDisplayNameAction),
+    ('/newgame', game_handlers.NewGameAction),
+    ('/scoresupdate', game_handlers.ScoresUpdateAction)
+], debug=True)
