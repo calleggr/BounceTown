@@ -46,9 +46,9 @@ jinja_env.filters["game_complete_boolean_format"] = game_utils.game_complete_boo
 
 app = webapp2.WSGIApplication([
     ('/', main_handlers.HomePage),
-    ('/play', game_handlers.PlayPage),
-    ('/gamesinprogress', game_handlers.GamesInProgressPage),
-    ('/completedgames', game_handlers.CompletedGamesWithFriendsPage),
+    ('/', game_handlers.PlayPage),
+    ('/challenges', game_handlers.GamesInProgressPage),
+    ('/past_challenges', game_handlers.CompletedGamesWithFriendsPage),
 
     ('/setdisplayname', main_handlers.SetDisplayNameAction),
     ('/newgame', game_handlers.NewGameAction),

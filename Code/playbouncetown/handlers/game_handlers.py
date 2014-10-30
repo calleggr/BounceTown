@@ -55,10 +55,10 @@ class ScoresUpdateAction(base_handlers.BaseAction):
     game = ndb.Key(urlsafe=self.request.get('game_key')).get()
     new_score = int(self.request.get("new_score"))
     if player.key == game.creator_key:
+      #DONE
       game.creator_scores.append(new_score)
     else:
-      if len(game.invitee_scores) == 0:
-        player_utils.update_past_opponents(game)
+      # DONE: Append the score to the invitee scores
       game.invitee_scores.append(new_score)
     game.is_complete = game_utils.is_game_complete(game)
     game.put()
@@ -73,10 +73,8 @@ class NewGameAction(base_handlers.BaseAction):
     else:
       invited_player_key = None
 
-    new_game = models.Game(parent=player.key,
-                           creator_key=player.key,
-                           invitee_key=invited_player_key,
-                           is_solo=not invited_player_key
-                           )
+    new_game = models.Game(parent = player.key,
+                           creator_key = player.key,
+                           invitee_key = invited_player_key)
     new_game.put();
     self.redirect("/play?game_key=" + new_game.key.urlsafe())

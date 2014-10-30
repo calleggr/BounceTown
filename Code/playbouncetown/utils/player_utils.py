@@ -12,7 +12,8 @@ def get_player_from_email(email):
   logging.info("player = " + str(player)) 
   if not player:
     logging.info("Failed to find player by id, creating new user")
-    player = Player(parent=get_parent_key_from_email(email), id=email)
+    player = Player(parent = get_parent_key_from_email(email),
+                    id = email)
     player.put()
   return player
 
@@ -21,16 +22,3 @@ def get_parent_key(user):
 
 def get_parent_key_from_email(email):
     return ndb.Key("Entity", email.lower())
-
-def update_past_opponents(game):
-  creator = game.creator_key.get()
-  invitee = game.invitee_key.get()
-  creator_email = creator.key.string_id()
-  invitee_email = invitee.key.string_id()
-  if creator_email not in invitee.past_opponent_emails:
-    invitee.past_opponent_emails.append(creator_email)
-    invitee.put()
-    
-  if invitee_email not in creator.past_opponent_emails:
-    creator.past_opponent_emails.append(invitee_email)
-    creator.put() 
