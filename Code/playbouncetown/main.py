@@ -49,6 +49,9 @@ app = webapp2.WSGIApplication([
     ('/', game_handlers.PlayPage),
     ('/challenges', game_handlers.GamesInProgressPage),
     ('/past_challenges', game_handlers.CompletedGamesWithFriendsPage),
+    ('/friends', main_handlers.FriendPage),
+    #('/addfriend', main_handlers.AddFriend),
+    #ask about passing in value
 
     ('/setdisplayname', main_handlers.SetDisplayNameAction),
     ('/newgame', game_handlers.NewGameAction),

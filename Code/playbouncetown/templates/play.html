@@ -15,7 +15,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
 <link rel="stylesheet" href="/static/stylesheets/style.css">
-<script src="/static/js/home.js"></script>
+
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -45,32 +45,27 @@
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="jumbotron">
-			<center>
-				<h1>Bounce Town</h1>
-				<img width="256px" height="256px" src="/static/images/baselogo.png"
-					alt="logo" />
-				<p class="lead">
-					Welcome to Bounce Town<br>
-				</p>
+	<div class="jumbotron"
+		style="margin-top: 120px; padding-bottom: 200px;">
+		<!--
+		<center>
+		<img src="/static/images/baselogo.png" />
+		</center>
+		<p class="text-center">Coming soon!</p> -->
+		<center>
+			<applet id="app" code="/BTApplet/src/gameComponent.java" height=500px width=500px></applet>
+			<script language="javascript"></script>
+		</center>
+		<div class="pull-left">
+			<a class="btn btn-primary btn-lg" href="/challenges" role="button"
+				data-toggle="tooltip" data-placement="left" title="chal button">Challenges</a>
+		</div>
 
-				{% if player %}
-				<p>
-					<button id="new-game-btn" class="btn btn-lg btn-success"
-						type="button">New Game</button>
-				</p>
-				{% else %}
-				<p>
-					<a id="sign-in-btn" href="{{ login_url }}"
-						class="btn btn-lg btn-success">Sign in with Google</a>
-				</p>
-				{% endif %}
-				{% include "templates/new_game_modal.html" %}
-			</center>
+		<div class="pull-right">
+			<a class="btn btn-primary btn-lg" href="/friends" role="button"
+				data-toggle="tooltip" data-placement="right" title="fird button">Friends</a>
 		</div>
 	</div>
-	
 
 
 	<!-- /.container -->
@@ -87,6 +82,5 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
-	
 </body>
 </html>

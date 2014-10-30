@@ -29,7 +29,7 @@ class PlayPage(base_handlers.BasePage):
 
 class GamesInProgressPage(base_handlers.BasePage):
   def get_template(self):
-    return "templates/games_in_progress.html"
+    return "templates/challenges.html"
 
   def update_values(self, player, values):
     games_less_than_10k, games_10k_or_more = game_utils.get_games_in_progress(player)
@@ -42,7 +42,7 @@ class GamesInProgressPage(base_handlers.BasePage):
 
 class CompletedGamesWithFriendsPage(base_handlers.BasePage):
   def get_template(self):
-    return "templates/all_games_with_friends.html"
+    return "templates/past_challenges.html"
 
   def update_values(self, player, values):
     pass
