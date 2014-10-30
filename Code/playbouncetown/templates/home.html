@@ -15,7 +15,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
 <link rel="stylesheet" href="/static/stylesheets/style.css">
-<script src="/static/js/home.js"></script>
+<script src="/static/js/home.js" type="text/javascript"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -66,11 +66,11 @@
 						class="btn btn-lg btn-success">Sign in with Google</a>
 				</p>
 				{% endif %}
-				{% include "templates/new_game_modal.html" %}
 			</center>
 		</div>
 	</div>
-	
+	{% include "templates/new_game_modal.html" %}
+
 
 
 	<!-- /.container -->
@@ -87,6 +87,6 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
 
-	
+
 </body>
 </html>

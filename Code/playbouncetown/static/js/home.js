@@ -12,5 +12,5 @@ rh.bt.home.enableButtons = function() {
 
 /* main */
 $(document).ready( function() {
-	rh.dwf.home.enableButtons();
+	rh.bt.home.enableButtons();
 });
