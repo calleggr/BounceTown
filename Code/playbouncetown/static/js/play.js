@@ -3,46 +3,43 @@ $(document).ready(function(){
 	/*Known Bugs:
 	-If you start a line, drag outside, then release, the line is invincible? It won't erase.
 	*/
-	//Starter debug
-	//console.log("Loaded!");
 	
-	//Number of points on the line
+	
+	//Number of points on the line (is fine where it is, increase for even more accuracy at performance price)
 	var numPointsOnLine = 100;
 	//Define the enemies array
 	var enemies = [];
+	//The game is updated every 'gameSpeed' seconds. Probably could just keep this where it is.
 	var gameSpeed = 20;
 	//Define the main character
 	var hero = new MainC();
-	
 	//Get the context of the canvas and clear it
 	var c = document.getElementById("canvas");
 	var ctx = c.getContext("2d");
-	ctx.clearRect(top,left,500,500);
 	
+	//Tells us if a game is in play or not.
 	var gameInPlay = true;
-	//Debug, really
+	//Decides when to make a new enemy, and the score.
 	var count = 0;
 	var score = 0;
 	//Max number of enemies on the screen at once
-	var numEnemies = 3;
-	
+	var numEnemies = 4;
 	//Are we in the process of drawing a line (basically the mouse is down and is moving)
 	var lineBeingDrawn=false;
 	var line = new Line();
-	
-	
 	//Get the offsets. useful for drawing the line
 	var offsets = document.getElementById('canvas').getBoundingClientRect();
 	var top = offsets.top;
 	var left = offsets.left;
+	ctx.clearRect(top,left,500,500);
 	
+	var enemyTimer = 166; //Multiply by 20 to get the milliseconds it takes to make an enemy.
 	
+	//If the mouse is being moved WHILE HELD DOWN, draw the line.
 	$('canvas').mousemove(function(e){
 		if(e.which == 1){
-			//console.log((e.pageX-left) + " / " + (e.pageY-top));
 			if(!lineBeingDrawn){
 				if(!line.finished){
-					//console.log("Line started!");
 					line.p1x = e.pageX-left;
 					line.p1y = e.pageY-top;
 					line.p2x = line.p1x;
@@ -59,14 +56,24 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('canvas').mouseup(function(e){
-		//console.log("Line ended!");
-		//console.log("Line point 1: " + line.p1x + " / " + line.p1y);
-		//console.log("Line point 2: " + line.p2x + " / " + line.p2y);
+	$(document).mouseup(function(e){
+		console.log(lineBeingDrawn);
 		if(lineBeingDrawn){
-			line.finished = true;
-			lineBeingDrawn = false;
-			line.createPoints();
+			//Are we in the x and y confines of the canvas?
+			var inX = (e.pageX < (left+500)) && (e.pageX > (left));
+			var inY = (e.pageY < (top + 500)) && (e.pageY > top);
+			
+			//If we aren't, clear the line.
+			if((!(inX && inY)) || line.getDistance() < 20){
+				line.clear();
+				lineBeingDrawn = false;
+				
+			//If we are, the line is done.
+			}else{
+				line.finished = true;
+				lineBeingDrawn = false;
+				line.createPoints();
+			}
 		}
 	});
 	
@@ -77,6 +84,9 @@ $(document).ready(function(){
 		//Clear the canvas
 		ctx.clearRect(0,0,500,500);
 		
+		ctx.fillStyle = "#d8d8d8";
+		ctx.font = "bold 70px Arial";
+		ctx.fillText(""+Math.round(score*10)/10,375,475);
 		//Draw the line
 		ctx.beginPath();
 		ctx.moveTo(line.getP1x(),line.getP1y());
@@ -134,17 +144,11 @@ $(document).ready(function(){
 			}
 		}
 		//Basic kill function for now.
-		score+=.02;
+		score+=gameSpeed/1000;
 		count+=1;
 		//Make a new enemy
-		if((count%166 == 0) && (enemies.length < numEnemies)){
-		
+		if((count%enemyTimer == 0) && (enemies.length < numEnemies)){
 			enemies.push(new Enemy());
-		}
-		
-		//Kill the program
-		if(count == 100000){
-			killInterval();
 		}
 	
 	
@@ -159,14 +163,14 @@ $(document).ready(function(){
 	function killInterval(){
 		gameInPlay = false;
 		clearInterval(timePassed);
-		ctx.clearRect(top,left,500,500);
+		ctx.clearRect(0,0,500,500);
 		clearCharacters();
 		ctx.fillStyle = "red";
 		ctx.font = "bold 16px Arial";
 		ctx.fillText("You lose! Press 'p' to play again.",145,230);
 		ctx.fillStyle = "blue";
 		ctx.font = "italic 16px Arial";
-		ctx.fillText("Your Score: " + Math.round(score),215,250);
+		ctx.fillText("Your Score: " + Math.round(score*10)/10,215,250);
 	}
 	
 	function clearCharacters(){
@@ -177,7 +181,7 @@ $(document).ready(function(){
 	
 	window.onkeyup = function(e){
 		var key = e.keyCode ? e.keyCode : e.which;
-		console.log(key);
+		//console.log(key);
 		if(key == 80){
 			location.reload();
 		}
@@ -282,11 +286,12 @@ $(document).ready(function(){
 	
 	//Define enemy class
 	function Enemy(){
-		this.x = 100;
-		this.y = 100;
+		this.x = Math.round((400*Math.random()+50));
+		this.y = Math.round((400*Math.random()+50));
 		this.radius = 20;
-		this.dx = 2;
-		this.dy = 3;
+		this.dx = Math.round(Math.random() + 1);
+		this.dy = (this.dx == 2 ? 1:2);
+		console.log("Enemy stats: " + this.dx + " / " + this.dy);
 		this.colorCounter = 0;
 		this.color = "#000000";
 		
@@ -354,6 +359,12 @@ $(document).ready(function(){
 				this.yPoints.push((i*dy)+this.p1y);
 			}
 
+		}
+		
+		this.getDistance = function(){
+			var dx = this.p2x - this.p1x;
+			var dy = this.p2y - this.p1y;
+			return Math.sqrt(Math.pow(dx,2)+Math.pow(dy,2));
 		}
 		
 		//Set the first point
