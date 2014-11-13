@@ -7,53 +7,53 @@ $(document).ready(function(){
 	var hilo = document.getElementById("hilo-table");
 	var lohi = document.getElementById("lohi-table");
 	
-	$(#'lasttf-btn').click(function(){
-		lastTF.toggleClass("hidden");
-		lastTen.toggleClass("hidden");
-		topTF.toggleClass("hidden");
-		topTen.toggleClass("hidden");
-		hilo.toggleClass("hidden");
-		lohi.toggleClass("hidden");
+	$('#topten').click(function(){
+		$(lastTF).addClass("hidden");
+		$(lastTen).addClass("hidden");
+		$(topTF).addClass("hidden");
+		$(topTen).removeClass("hidden");
+		$(hilo).addClass("hidden");
+		$(lohi).addClass("hidden");
 	});
-	$('#lastten-btn').click(function(){
-		lastTF.toggleClass("hidden");
-		lastTen.toggleClass("hidden");
-		topTF.toggleClass("hidden");
-		topTen.toggleClass("hidden");
-		hilo.toggleClass("hidden");
-		lohi.toggleClass("hidden");
+	$('#toptf').click(function(){
+		$(lastTF).addClass("hidden");
+		$(lastTen).addClass("hidden");
+		$(topTF).removeClass("hidden");
+		$(topTen).addClass("hidden");
+		$(hilo).addClass("hidden");
+		$(lohi).addClass("hidden");
 	});
-	$('#toptf-btn').click(function(){
-		lastTF.toggleClass("hidden");
-		lastTen.toggleClass("hidden");
-		topTF.toggleClass("hidden");
-		topTen.toggleClass("hidden");
-		hilo.toggleClass("hidden");
-		lohi.toggleClass("hidden");
+	$('#hilo').click(function(){
+		$(lastTF).addClass("hidden");
+		$(lastTen).addClass("hidden");
+		$(topTF).addClass("hidden");
+		$(topTen).addClass("hidden");
+		$(hilo).removeClass("hidden");
+		$(lohi).addClass("hidden");
 	});
-	$('#topten-btn').click(function(){
-		lastTF.toggleClass("hidden");
-		lastTen.toggleClass("hidden");
-		topTF.toggleClass("hidden");
-		topTen.toggleClass("hidden");
-		hilo.toggleClass("hidden");
-		lohi.toggleClass("hidden");
+	$('#lohi').click(function(){
+		$(lastTF).addClass("hidden");
+		$(lastTen).addClass("hidden");
+		$(topTF).addClass("hidden");
+		$(topTen).addClass("hidden");
+		$(hilo).addClass("hidden");
+		$(lohi).removeClass("hidden");
 	});
-	$('#hilo-btn').click(function(){
-		lastTF.toggleClass("hidden");
-		lastTen.toggleClass("hidden");
-		topTF.toggleClass("hidden");
-		topTen.toggleClass("hidden");
-		hilo.toggleClass("hidden");
-		lohi.toggleClass("hidden");
+	$('#lasttf').click(function(){
+		$(lastTF).removeClass("hidden");
+		$(lastTen).addClass("hidden");
+		$(topTF).addClass("hidden");
+		$(topTen).addClass("hidden");
+		$(hilo).addClass("hidden");
+		$(lohi).addClass("hidden");
 	});
-	$('#lohi-btn').click(function(){
-		lastTF.toggleClass("hidden");
-		lastTen.toggleClass("hidden");
-		topTF.toggleClass("hidden");
-		topTen.toggleClass("hidden");
-		hilo.toggleClass("hidden");
-		lohi.toggleClass("hidden");
+	$('#lastten').click(function(){
+		$(lastTF).addClass("hidden");
+		$(lastTen).removeClass("hidden");
+		$(topTF).addClass("hidden");
+		$(topTen).addClass("hidden");
+		$(hilo).addClass("hidden");
+		$(lohi).addClass("hidden");
 	});
 	
 });

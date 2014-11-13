@@ -120,16 +120,16 @@
 	{% endif %}
 	<center>
 	<div id="btn-group" class="btn-group-lg" role="group" aria-label="...">
-  <button type="button" class="btn btn-default">Last 25</button>
-  <button type="button" class="btn btn-default">Last 10</button>
-  <button type="button" class="btn btn-default">Top 25</button>
-  <button type="button" class="btn btn-default">Top 10</button>
-  <button type="button" class="btn btn-default">All - Hi to Lo</button>
-  <button type="button" class="btn btn-default">All - Lo to Hi</button>
+  	<button id="lasttf" type="button" class=" btn btn-default">Last 25</button>
+  <button id="lastten" type="button" class=" btn btn-default">Last 10</button>
+  <button id="toptf" type="button" class="btn btn-default">Top 25</button>
+  <button id="topten" type="button" class="btn btn-default">Top 10</button>
+  <button id="hilo" type="button" class="btn btn-default">All - Hi to Lo</button>
+  <button id="lohi" type="button" class="btn btn-default">All - Lo to Hi</button>
 	</div>
 	</center>
 
-	<table class="table table-striped hidden">
+	<table id="topten-table" class="table table-striped hidden">
   <thead>
     <tr>
       <th><center>Your Top Ten Scores</center></th>
@@ -144,7 +144,7 @@
   </tbody>
   </table>
   
-  <table class="table table-striped">
+  <table id="toptf-table" class="table table-striped">
   <thead>
     <tr>
       <th><center>Your Top 25 Scores</center></th>
@@ -159,7 +159,7 @@
   </tbody>
   </table>
   
-  <table class="table table-striped hidden">
+  <table id="lastten-table" class="table table-striped hidden">
   <thead>
     <tr>
       <th><center>Your Ten Most Recent Scores</center></th>
@@ -174,7 +174,7 @@
   </tbody>
   </table>
   
-  <table class="table table-striped hidden">
+  <table id = "lasttf-table" class="table table-striped hidden">
   <thead>
     <tr>
       <th><center>Your Twenty-Five Most Recent Scores</center></th>
@@ -189,7 +189,7 @@
   </tbody>
   </table>
   
-  <table class="table table-striped hidden">
+  <table id = "lohi-table" class="table table-striped hidden">
   <thead>
     <tr>
       <th><center>All of your scores from lowest to highest</center></th>
@@ -204,7 +204,7 @@
   </tbody>
   </table>
   
-  <table class="table table-striped hidden">
+  <table id = "hilo-table" class="table table-striped hidden">
   <thead>
     <tr>
       <th><center>All of your scores from highest to lowest</center></th>

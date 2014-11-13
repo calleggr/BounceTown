@@ -65,13 +65,13 @@ class ScoresPage(base_handlers.BasePage):
             last_ten.append(player.scores[-1*k])
         for k in range (0,min(len(player.scores), 25)):
             last_twentyfive.append(player.scores[-1*k])
-        for k in range (0,min(len(top_scores), 10)):
+        for k in range (1,min(len(top_scores)-1, 11)):
             top_ten.append(top_scores[-1*k])
-        for k in range (0,min(len(top_scores), 25)):
+        for k in range (1,min(len(top_scores)-1, 26)):
             top_twentyfive.append(top_scores[-1*k])
             
-        for k in range (len(top_scores)-1,0):
-            top_scores_max.append(top_scores[k]) 
+        for k in range (0,len(top_scores)-1):
+            top_scores_max.append(top_scores[len(top_scores)-1-k]) 
               
         values["top_ten"] = top_ten
         values["top_twentyfive"] = top_twentyfive
