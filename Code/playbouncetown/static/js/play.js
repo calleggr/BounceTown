@@ -80,6 +80,7 @@ $(document).ready(function(){
 	var timePassed = 0;
 	playGame();
 	function playGame(){
+		sleep(1000);
 		timePassed = setInterval(function() {
 		//Clear the canvas
 		ctx.clearRect(0,0,500,500);
@@ -147,7 +148,7 @@ $(document).ready(function(){
 		score+=gameSpeed/1000;
 		count+=1;
 		//Make a new enemy
-		if((count%enemyTimer == 0) && (enemies.length < numEnemies)){
+		if(((count%enemyTimer == 0) && (enemies.length < numEnemies)) || (score > 20 && enemies.length <= numEnemies) || (score > 40 && enemies.length <= numEnemies+1)){
 			enemies.push(new Enemy());
 		}
 	
@@ -167,7 +168,7 @@ $(document).ready(function(){
 		clearCharacters();
 		ctx.fillStyle = "red";
 		ctx.font = "bold 16px Arial";
-		ctx.fillText("You lose! Press 'p' to play again.",145,230);
+		ctx.fillText("You lose! Game will restart in 1 second.",115,230);
 		ctx.fillStyle = "blue";
 		ctx.font = "italic 16px Arial";
 		ctx.fillText("Your Score: " + Math.round(score*10)/10,215,250);
@@ -176,6 +177,17 @@ $(document).ready(function(){
 		$('#new_score').val(Math.round(score));
 		$('#btn-submit-score').click();
 		
+	}
+	
+
+
+	function sleep(milliseconds) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds) {
+				break;
+			}
+		}
 	}
 	
 	function clearCharacters(){

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bounce Town</title>
+</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<link rel="stylesheet" href="/static/stylesheets/style.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script src="/static/js/play.js" type="text/javascript"></script>
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+<body>
+
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">Bounce Town</a>
+			</div>
+			<nav class="collapse navbar-collapse bs-navbar-collapse"
+				role="navigation">
+				{% if player %}
+				<ul class="nav navbar-nav navbar-left">
+					<li><a class="active" href="/play">Play!</a></li>
+					<li><a href="/scores">Scores</a></li>
+				</ul>
+				{% endif %}
+				<ul class="nav navbar-nav navbar-right">
+					{% if player %}
+					<li><a id="change-display-name-link">{{ player.get_name()
+							}}</a></li> {% endif %} {% if logout_url %}
+					<li><a style="display: inline-block;" href="{{ logout_url }}">Sign
+							out</a></li> {% endif %}
+				</ul>
+			</nav>
+
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+
+	{% if player %}
+	<!-- Change display_name Modal -->
+	<div id='change-display-name-modal' class="modal fade" tabindex="-1"
+		role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					{% if player.display_name %}
+					<h4 class="modal-title">Update your display name</h4>
+					{% else %}
+					<h4 class="modal-title">Set your display name</h4>
+					{% endif %}
+				</div>
+				<form action="/setdisplayname" method="POST">
+					<div class="modal-body">
+						<p>This will be the name displayed in the app and on game
+							pages.</p>
+						<input type="text" name="display_name" class="form-control"
+							placeholder="Usually just your first name"
+							value="{% if player.display_name %}{{ player.display_name }}{% endif %}"
+							autofocus>
+					</div>
+					<div class="modal-footer">
+						{% if player.display_name %}
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						{% endif %}
+						<button type="submit" class="btn btn-primary">OK</button>
+					</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<script>
+  	$("#change-display-name-link").click(function() {
+  	  {% if player.display_name %}
+  	    $("input[name=display_name]").val("{{ player.display_name }}");
+      {% else %}
+        $("input[name=display_name]").val("");
+      {% endif %}
+      $('#change-display-name-modal').modal('show');
+  	});
+  	{% if show_set_name_modal %}
+  	  $(document).ready(function() {
+  		setTimeout(function() {
+  		  $('#change-display-name-modal').modal('show');
+  		}, 2000);
+  	  });
+  	{% endif %}
+  </script>
+	{% endif %}
+
+
+
+	<div class="jumbotron"
+		style="margin-top: 120px; padding-bottom: 200px;">
+
+		<center>
+			<form action="/addScore" method="post">
+				<input type="hidden" id="new_score" name="new_score"
+					class="hidden-input">
+				<button id="btn-submit-score" type="submit" class="hidden"></button>
+				<div id="lastScore">
+					<span id="scoreMessage">Your Most Recent Score:</span> <span
+						id="score">{{ last_score }}</span>
+				</div>
+			</form>
+			<canvas id="canvas" width="500" height="500"
+				style="border: 1px solid #000000;"></canvas>
+		</center>
+
+		<center>
+			<p>Game Starts Automatically.</p>
+			<p>Click and drag your mouse to creat lines to keep the hero away
+				from the enemies!</p>
+			<div>
+				<a class="btn btn-primary btn-lg" href="/scores" role="button"
+					data-toggle="tooltip" data-placement="right" title="fird button">Your
+					Scores</a>
+			</div>
+		</center>
+	</div>
+
+
+	<!-- /.container -->
+
+
+	<!-- Bootstrap core JavaScript
+		================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+
+
+</body>
+</html>
