@@ -42,24 +42,53 @@ class PlayPage(base_handlers.BasePage):
     def get_template(self):
         return "templates/play.html"
     
-    def update_values(self,player,values):
-        #Score.query().order(-Score.last_touch_date_time)
-        last_five_scores = []
-        for x in range(0,min(5,len(player.scores)-1)):
-            last_five_scores.append(player.scores[-1])
-        values["last_five_scores"] = last_five_scores
-        values["last_score"] = player.scores[-1];
+    def update_values(self, player, values):
+        # Score.query().order(-Score.last_touch_date_time)
         
-class Scores(base_handlers.BasePage):
+        if(len(player.scores) < 1):
+            values["last_score"] = 0
+        else:    
+            values["last_score"] = player.scores[-1];
+        
+class ScoresPage(base_handlers.BasePage):
     def get_template(self):
         return "templates/scores.html"
     
-    def update_values(self,player,values):
-         pass
+    def update_values(self, player, values):
+        top_ten = []
+        top_twentyfive = []
+        top_scores = player.scores.sort()
+        last_ten = []
+        last_twentyfive = []
+        top_scores_max = []
+        for k in range (0,min(len(player.scores), 10)):
+            last_ten.append(player.scores[-1*k])
+        for k in range (0,min(len(player.scores), 25)):
+            last_twentyfive.append(player.scores[-1*k])
+        for k in range (0,min(len(top_scores), 10)):
+            top_ten.append(top_scores[-1*k])
+        for k in range (0,min(len(top_scores), 25)):
+            top_twentyfive.append(top_scores[-1*k])
+            
+        for k in range (len(top_scores)-1,0):
+            top_scores_max.append(top_scores[k]) 
+              
+        values["top_ten"] = top_ten
+        values["top_twentyfive"] = top_twentyfive
+        values["last_ten"] = last_ten
+        values["last_twentyfive"] = last_twentyfive
+        values["sorted_min"] = top_scores
+        values["sorted_max"] = top_scores_max
+        
+        
+        
+        
+     
         
 
 app = webapp2.WSGIApplication([
     ('/', main_handlers.HomePage),
     ('/play', PlayPage),
-    ('/addScore', AddScore)
+    ('/addScore', AddScore),
+    ('/scores', ScoresPage)
 ], debug=True)
