@@ -61,7 +61,15 @@
 		</center>
 		<p class="text-center">Coming soon!</p> -->
 		<center>
-			<p>Score will go here</p>
+		<form action="/scoresupdate" method="post">
+			<input type="hidden" name="game_key" class="hidden-input" value="{{ game.key.urlsafe() }}">
+			<input type="hidden" name="new_score" class="hidden-input">
+			<button id="btn-submit-score" type="submit" class="hidden"></button>
+			<div id="lastScore">
+				<span id = "scoreMessage" >Your Most Recent Score:</span>
+				<span id ="score">0</span>
+			</div>
+		</form>
 			<canvas id="canvas" width="500" height="500"
 				style="border: 1px solid #000000;"></canvas>
 		</center>
