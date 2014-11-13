@@ -1,7 +1,7 @@
 from models import Player
 import logging
 from google.appengine.ext import ndb
-from models import Game
+
 
 def get_player_from_email(email):
   """Helper method to get the Player object corresponding to the given User.
