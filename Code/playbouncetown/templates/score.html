@@ -22,6 +22,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+<script src="static/js/changeTables.js"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -117,8 +118,106 @@
   	{% endif %}
   </script>
 	{% endif %}
+	<center>
+	<div id="btn-group" class="btn-group-lg" role="group" aria-label="...">
+  <button type="button" class="btn btn-default">Last 25</button>
+  <button type="button" class="btn btn-default">Last 10</button>
+  <button type="button" class="btn btn-default">Top 25</button>
+  <button type="button" class="btn btn-default">Top 10</button>
+  <button type="button" class="btn btn-default">All - Hi to Lo</button>
+  <button type="button" class="btn btn-default">All - Lo to Hi</button>
+	</div>
+	</center>
 
-
+	<table class="table table-striped hidden">
+  <thead>
+    <tr>
+      <th><center>Your Top Ten Scores</center></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for score in top_ten %}
+    	<tr>
+    		<td><center>{{score}}</center></td>
+    	</tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th><center>Your Top 25 Scores</center></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for score in top_twentyfive %}
+    	<tr>
+    		<td><center>{{score}}</center></td>
+    	</tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  
+  <table class="table table-striped hidden">
+  <thead>
+    <tr>
+      <th><center>Your Ten Most Recent Scores</center></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for score in last_ten %}
+    	<tr>
+    		<td><center>{{score}}</center></td>
+    	</tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  
+  <table class="table table-striped hidden">
+  <thead>
+    <tr>
+      <th><center>Your Twenty-Five Most Recent Scores</center></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for score in last_twentyfive %}
+    	<tr>
+    		<td><center>{{score}}</center></td>
+    	</tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  
+  <table class="table table-striped hidden">
+  <thead>
+    <tr>
+      <th><center>All of your scores from lowest to highest</center></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for score in sorted_min %}
+    	<tr>
+    		<td><center>{{score}}</center></td>
+    	</tr>
+    {% endfor %}
+  </tbody>
+  </table>
+  
+  <table class="table table-striped hidden">
+  <thead>
+    <tr>
+      <th><center>All of your scores from highest to lowest</center></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for score in sorted_max %}
+    	<tr>
+    		<td><center>{{score}}</center></td>
+    	</tr>
+    {% endfor %}
+  </tbody>
+  </table>
 
 	<!-- /.container -->
 
