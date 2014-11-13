@@ -52,7 +52,7 @@ class PlayPage(base_handlers.BasePage):
         
 class ScoresPage(base_handlers.BasePage):
     def get_template(self):
-        return "templates/scores.html"
+        return "templates/score.html"
     
     def update_values(self, player, values):
         top_ten = []
@@ -90,5 +90,6 @@ app = webapp2.WSGIApplication([
     ('/', main_handlers.HomePage),
     ('/play', PlayPage),
     ('/addScore', AddScore),
-    ('/scores', ScoresPage)
+    ('/scores', ScoresPage),
+    ('/setdisplayname', main_handlers.SetDisplayNameAction),
 ], debug=True)
