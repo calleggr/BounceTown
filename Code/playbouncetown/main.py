@@ -22,6 +22,10 @@ from handlers import main_handlers
 from utils import date_utils
 from handlers import base_handlers
 
+from models import Player
+from models import Score
+
+
 jinja_env = jinja2.Environment(loader=jinja2.FileSystemLoader(os.path.dirname(__file__)), autoescape=True)
 jinja_env.filters["date_format"] = date_utils.date_format
 
@@ -37,6 +41,21 @@ class AddScore(base_handlers.BaseAction):
 class PlayPage(base_handlers.BasePage):
     def get_template(self):
         return "templates/play.html"
+    
+    def update_values(self,player,values):
+        #Score.query().order(-Score.last_touch_date_time)
+        last_five_scores = []
+        for x in range(0,min(5,len(player.scores)-1)):
+            last_five_scores.append(player.scores[-1])
+        values["last_five_scores"] = last_five_scores
+        values["last_score"] = player.scores[-1];
+        
+class Scores(base_handlers.BasePage):
+    def get_template(self):
+        return "templates/scores.html"
+    
+    def update_values(self,player,values):
+         pass
         
 
 app = webapp2.WSGIApplication([

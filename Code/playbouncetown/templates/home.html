@@ -65,8 +65,10 @@
 
 				{% if player %}
 				<p>
-					<button id="new-game-btn" class="btn btn-lg btn-success"
-						type="button">New Game</button>
+				<form>
+					<a href="/play" id="new-game-btn" class="btn btn-lg btn-success"
+						type="button">New Game</a>
+				</form>
 				</p>
 				{% else %}
 				<p>
@@ -77,7 +79,6 @@
 			</center>
 		</div>
 	</div>
-	{% include "templates/new_game_modal.html" %}
 
 
 

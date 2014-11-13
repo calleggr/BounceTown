@@ -61,13 +61,18 @@
 		</center>
 		<p class="text-center">Coming soon!</p> -->
 		<center>
-		<form action="/scoresupdate" method="post">
-			<input type="hidden" name="game_key" class="hidden-input" value="{{ game.key.urlsafe() }}">
-			<input type="hidden" name="new_score" class="hidden-input">
+		<!-- 
+		{% for score in last_five_scores %}
+    	<tr>
+    		<td>{{ score }}</td>
+    	</tr>
+        {% endfor %} -->
+		<form action="/addScore" method="post">
+			<input type="hidden" id="new_score" name="new_score" class="hidden-input">
 			<button id="btn-submit-score" type="submit" class="hidden"></button>
 			<div id="lastScore">
 				<span id = "scoreMessage" >Your Most Recent Score:</span>
-				<span id ="score">0</span>
+				<span id ="score">{{ last_score }}</span>
 			</div>
 		</form>
 			<canvas id="canvas" width="500" height="500"

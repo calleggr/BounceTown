@@ -171,9 +171,11 @@ $(document).ready(function(){
 		ctx.fillStyle = "blue";
 		ctx.font = "italic 16px Arial";
 		ctx.fillText("Your Score: " + Math.round(score*10)/10,215,250);
-		$('#score').html(Math.round(score*10)/10);
+		//$('#score').html(Math.round(score));
+		console.log(Math.round(score));
+		$('#new_score').val(Math.round(score));
 		$('#btn-submit-score').click();
-		console.log("Button clicked");
+		
 	}
 	
 	function clearCharacters(){
