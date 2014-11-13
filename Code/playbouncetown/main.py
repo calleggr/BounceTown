@@ -57,7 +57,7 @@ class ScoresPage(base_handlers.BasePage):
     def update_values(self, player, values):
         top_ten = []
         top_twentyfive = []
-        top_scores = player.scores.sort()
+        top_scores = sorted(player.scores)
         last_ten = []
         last_twentyfive = []
         top_scores_max = []
