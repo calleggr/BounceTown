@@ -94,7 +94,7 @@ class ScoresPageNewUser(base_handlers.BasePage):
         else:
             email = self.request.get('new_email')
             if not email:
-                email = ""
+                email = "null"
                 
             player = player_utils.get_player_from_email(email)
     
