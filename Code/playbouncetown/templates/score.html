@@ -52,8 +52,8 @@
 				</ul>
 				{% endif %}
 				<ul class="nav navbar-nav navbar-right">
-					{% if player %}
-					<li><a id="change-display-name-link">{{ player.get_name()
+					{% if display_player %}
+					<li><a id="change-display-name-link">{{ display_player.get_name()
 							}}</a></li> {% endif %} {% if logout_url %}
 					<li><a style="display: inline-block;" href="{{ logout_url }}">Sign
 							out</a></li> {% endif %}

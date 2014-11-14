@@ -96,6 +96,7 @@ class ScoresPageNewUser(base_handlers.BasePage):
             player = player_utils.get_player_from_email(email)
     
             values = {'email':email,
+                      'display_player':player_utils.get_player_from_email(user.email()),
                       'player':player,
                       'logout_url':users.create_logout_url("/")}
             self.update_values(player, values)
