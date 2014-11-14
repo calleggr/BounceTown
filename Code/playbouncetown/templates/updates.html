@@ -22,8 +22,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-<script src="/static/js/play.js" type="text/javascript"></script>
-<link href='http://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
+<script src="static/js/changeTables.js"></script>
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -47,9 +46,9 @@
 				role="navigation">
 				{% if player %}
 				<ul class="nav navbar-nav navbar-left">
-					<li class="active"><a  href="/play">Play!</a></li>
-					<li><a href="/scores">Scores</a></li>
-					<li><a href="/update">Updates</a></li>
+					<li><a href="/play">Play!</a></li>
+					<li><a  href="/scores">Scores</a></li>
+					<li class="active"><a href="/update">Updates</a></li>
 				</ul>
 				{% endif %}
 				<ul class="nav navbar-nav navbar-right">
@@ -123,36 +122,35 @@
 
 
 
-	<div class="jumbotron"
-		style="margin-top: 80px; padding-bottom: 200px;">
-
+	<div class="jumbotron" style="margin-top:100px ;background-color:#DDDDDD">
 		<center>
-			<form action="/addScore" method="post">
-				<input type="hidden" id="new_score" name="new_score"
-					class="hidden-input">
-				<button id="btn-submit-score" type="submit" class="hidden"></button>
-				<div id="lastScore">
-					<span id="scoreMessage">Your Most Recent Score:</span> <span
-						id="score">{{ last_score }}</span>
-				</div>
-			</form>
-			<canvas id="canvas" width="500" height="500"
-				style="border: 1px solid #000000;"></canvas>
-		</center>
-
-		<center>
-			<p>Game Starts Automatically.</p>
-			<p>Click and drag your mouse to create lines to keep the hero away
-				from the enemies!</p>
-			<div>
-				<a class="btn btn-primary btn-lg" href="/scores" role="button"
-					data-toggle="tooltip" data-placement="right" title="fird button">Your
-					Scores</a>
-			</div>
+		<h1>Current Version: 1.0 (11/13/14)</h1>
 		</center>
 	</div>
 
 
+	<div style="margin-right:auto; margin-left:auto; width:500px; background-color:white;">
+		<center>
+		<h2>New In This Update:</h2>
+		<ul style="list-style-type:none">
+			<li>+ One hero, four enemies. How long can you last?</li>
+			<li>+ A fifth and sixth enemy added at 20 and 40 seconds for the hardcore players</li>
+			<li>+ Keep track of your best scores using our scores page!</li>
+		</ul>
+		<hr>
+		<h2>Next Update: 1.1</h2>
+		<ul style="list-style-type:none">
+			<li>+ Powerups! Slow down time or stomp some pea-sized enemies</li>
+			<li>+ Choosable line color! <br><i>(Friends can't make fun of your score if you have a cool green line!)</i></li>
+			<li>+ Better enemy starting points so you don't die randomly!</li>
+		</ul>
+		
+		
+		</center>
+	
+		
+	
+	</div>
 	<!-- /.container -->
 
 

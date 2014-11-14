@@ -47,7 +47,8 @@
 				{% if player %}
 				<ul class="nav navbar-nav navbar-left">
 					<li><a href="/play">Play!</a></li>
-					<li><a class="active" href="/scores">Scores</a></li>
+					<li class="active"><a  href="/scores">Scores</a></li>
+					<li><a href="/update">Updates</a></li>
 				</ul>
 				{% endif %}
 				<ul class="nav navbar-nav navbar-right">
@@ -127,8 +128,20 @@
   <button id="hilo" type="button" class="btn btn-default">All - Hi to Lo</button>
   <button id="lohi" type="button" class="btn btn-default">All - Lo to Hi</button>
 	</div>
-	</center>
-
+	
+	<hr>
+   <form action="/userscores" method="get">
+	<div class="col-lg-6">
+    <div class="input-group" style="width:300px">
+      <input id="new_email" name="new_email" type="text" class="form-control" placeholder="Check any user's scores!">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+  </form>
+  </center>
+  	<center><p>You are looking at: {{email}}</p></center>
 	<table id="topten-table" class="table table-striped hidden">
   <thead>
     <tr>
