@@ -128,20 +128,16 @@
   <button id="hilo" type="button" class="btn btn-default">All - Hi to Lo</button>
   <button id="lohi" type="button" class="btn btn-default">All - Lo to Hi</button>
 	</div>
-	
+	</center>
 	<hr>
+	 <center>
    <form action="/userscores" method="get">
-	<div class="col-lg-6">
-    <div class="input-group" style="width:300px">
-      <input id="new_email" name="new_email" type="text" class="form-control" placeholder="Check any user's scores!">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="submit">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+      <input style="width:300px" id="new_email" name="new_email" type="text" class="form-control" placeholder="Check any user's scores!">
+       <button id="submitbtn" class="btn btn-default" type="submit">Go!</button>
   </form>
-  </center>
+    </center>
   <br>
+
   	<center><p>You are looking at: {{email}}</p></center>
 	<table id="topten-table" class="table table-striped hidden">
   <thead>

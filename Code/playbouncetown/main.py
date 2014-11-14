@@ -93,6 +93,9 @@ class ScoresPageNewUser(base_handlers.BasePage):
             self.response.out.write(template.render({'login_url': users.create_login_url(self.request.referer)}))
         else:
             email = self.request.get('new_email')
+            if not email:
+                email = ""
+                
             player = player_utils.get_player_from_email(email)
     
             values = {'email':email,
