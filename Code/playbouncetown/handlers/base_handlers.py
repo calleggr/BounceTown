@@ -18,6 +18,7 @@ class BasePage(webapp2.RequestHandler):
       player = player_utils.get_player_from_email(user.email())
       show_set_name_modal = not player.display_name or not len(player.display_name) > 0
       values = {'player': player,
+                'email' : player.get_email(),
                 'show_set_name_modal': show_set_name_modal,
                 'logout_url': users.create_logout_url("/")}
       self.update_values(player, values)

@@ -1,6 +1,7 @@
 from models import Player
 import logging
 from google.appengine.ext import ndb
+from google.storage.speckle.proto.jdbc_type import NULL
 
 
 def get_player_from_email(email):
@@ -22,3 +23,11 @@ def get_parent_key(user):
 
 def get_parent_key_from_email(email):
     return ndb.Key("Entity", email.lower())
+
+def retrieve_player_from_email(email):
+    email = email.lower()
+    player = Player.get_by_id(email, parent=get_parent_key_from_email(email))
+    if not player:
+        return NULL
+    return player
+
